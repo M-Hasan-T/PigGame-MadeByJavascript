@@ -13,12 +13,14 @@ const btnRollElement = document.querySelector('.btn--roll');
 const btnHoldElement = document.querySelector('.btn--hold');
 
 //Set these initial conditions of the elements. Javascript will automatically convert these initial values to strings to actually display them on the page.
+
 score0Element.textContent = 0;
 score1Element.textContent = 0;
 let currentScore = 0;
 let activePlayer = 0;
 let finalScore0 = 0;
 let finalScore1 = 0;
+
 function addHidden() {
   diceElement.classList.add('hidden');
 }
@@ -61,4 +63,15 @@ btnHoldElement.addEventListener('click', function () {
   document.getElementById(`score--${activePlayer}`).textContent = 0;
   activePlayer = activePlayer === 0 ? 1 : 0;
   currentScore = 0;
+});
+
+btnNewElement.addEventListener('click', function () {
+  document.getElementById('current--0').textContent = 0;
+  document.getElementById('current--1').textContent = 0;
+  score0Element.textContent = 0;
+  score1Element.textContent = 0;
+  currentScore = 0;
+  activePlayer = 0;
+  finalScore0 = 0;
+  finalScore1 = 0;
 });
