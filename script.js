@@ -18,12 +18,7 @@ const btnHoldElement = document.querySelector('.btn--hold');
 
 //Set these initial conditions of the elements. Javascript will automatically convert these initial values to strings to actually display them on the page.
 
-score0Element.textContent = 0;
-score1Element.textContent = 0;
-let currentScore = 0;
-let activePlayer = 0;
-let scores = [0, 0];
-let play = true;
+let scores, currentScore, activePlayer, play;
 
 function addHidden() {
   diceElement.classList.add('hidden');
@@ -32,6 +27,18 @@ function addHidden() {
 function removeHidden() {
   diceElement.classList.remove('hidden');
 }
+
+const initialValues = function () {
+  currentScore = 0;
+  activePlayer = 0;
+  scores = [0, 0];
+  play = true;
+  addHidden();
+  score0Element.textContent = 0;
+  score1Element.textContent = 0;
+};
+
+initialValues();
 
 // function changeBackgroundColor() {
 //   if (activePlayer === 0) {
@@ -71,7 +78,7 @@ btnHoldElement.addEventListener('click', function () {
     scores[activePlayer] += currentScore;
     document.getElementById(`current--${activePlayer}`).textContent =
       scores[activePlayer];
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 100) {
       play = false;
       document
         .querySelector(`.player--${activePlayer}`)
@@ -89,18 +96,12 @@ btnHoldElement.addEventListener('click', function () {
 });
 
 btnNewElement.addEventListener('click', function () {
-  play = true;
   current0Element.textContent = 0;
   current1Element.textContent = 0;
-  score0Element.textContent = 0;
-  score1Element.textContent = 0;
-  currentScore = 0;
-  scores = [0, 0];
-  removeHidden();
   document
     .querySelector(`.player--${activePlayer}`)
     .classList.remove('player--winner', 'name');
-  activePlayer = 0;
+  initialValues();
   document
     .querySelector(`.player--${activePlayer}`)
     .classList.add('player--active');
